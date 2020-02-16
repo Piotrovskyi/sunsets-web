@@ -1,35 +1,20 @@
 import React from 'react';
 import './Index.styles.css';
 
-import {
-  interaction,
-  layer,
-  custom,
-  control, //name spaces
-  Interactions,
-  Overlays,
-  Controls, //group
-  Map,
-  Layers,
-  Overlay,
-  Util, //objects
-} from 'react-openlayers';
-
 import Footer from '../../components/Footer';
-import Navigation from '../../components/Navigation/Navigation.component';
+import Navigation from '../../components/Navigation';
+import Map from '../../components/Map';
+
+import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+const { Header, Content, Sider } = Layout;
 
 const Index = () => (
-  <>
-    <Navigation />
-
-    <Map view={{ center: [0, 0], zoom: 2 }}>
-      <Layers>
-        <layer.Tile />
-      </Layers>
-    </Map>
-
-    <Footer />
-  </>
+  <Layout>
+    <Layout>
+      <Sider>Sider</Sider>
+      <Content><Map /></Content>
+    </Layout>
+  </Layout>
 );
 
 export default Index;
