@@ -1,46 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Navigation.styles.css';
+import { Tabs, Radio } from 'antd';
+import Card from '../Card/Card.component';
 
-const Navigation = () => (
-  <div class="navbar">
-    <div class="dropdown">
-      <button class="dropbtn" id="mapbutton">
-        Map: Low
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="javascript:;" onclick="myCustomModule.changeMap('low');">
-          Low Clouds
-        </a>
-        <a href="javascript:;" onclick="myCustomModule.changeMap('medium');">
-          Medium Clouds
-        </a>
-        <a href="javascript:;" onclick="myCustomModule.changeMap('high');">
-          High Clouds
-        </a>
-        <a href="javascript:;" onclick="myCustomModule.changeMap('sunset');">
-          Sunset beauty
-        </a>
-      </div>
-    </div>
-    <div class="dropdown">
-      <button class="dropbtn" id="daybutton">
-        Day:0
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-content">
-        <a href="javascript:;" onclick="myCustomModule.changeDay(0);">
-          Today
-        </a>
-        <a href="javascript:;" onclick="myCustomModule.changeDay(1);">
-          Tomorrow
-        </a>
-        <a href="javascript:;" onclick="myCustomModule.changeDay(2);">
-          After Tomorrow
-        </a>
-      </div>
-    </div>
-  </div>
-);
+const { TabPane } = Tabs;
+
+const Navigation = () => {
+  const [day, setDay] = useState('0');
+
+  return (
+    <Tabs defaultActiveKey="2">
+      <TabPane tab="Weather" key="1">
+        Content of Tab Pane 1
+      </TabPane>
+      <TabPane tab="Photo spots" key="2">
+        <div style={{ padding: '0 24px', textAlign: 'right' }}>
+          <div className="time-title">Time</div>
+          <Radio.Group onChange={e => setDay(e.target.value)} value={day} className="day-control">
+            <Radio.Button value="2">After Tomorrow</Radio.Button>
+            <Radio.Button value="1">Tomorrow</Radio.Button>
+            <Radio.Button value="0">Today</Radio.Button>
+          </Radio.Group>
+          <div className="photo-spots">Photo spots</div>
+          <Card>Clouds</Card>
+          <Card>Sunrize</Card>
+          <Card>Sunset</Card>
+          <Card>Thunder</Card>
+        </div>
+      </TabPane>
+    </Tabs>
+  );
+};
 
 export default Navigation;

@@ -2,8 +2,21 @@ import React, { Component } from 'react';
 import 'ol/ol.css';
 import OlMap from 'ol/Map';
 import OlView from 'ol/View';
-import OlLayerTile from 'ol/layer/Tile';
-import OlSourceOSM from 'ol/source/OSM';
+// import OlLayerTile from 'ol/layer/Tile';
+// import OlSourceOSM from 'ol/source/OSM';
+import TileLayer from 'ol/layer/Tile';
+import { OSM } from 'ol/source';
+
+import GeoJSON from 'ol/format/GeoJSON';
+import VectorSource from 'ol/source/Vector';
+import { Fill, Stroke, Style } from 'ol/style';
+import VectorLayer from 'ol/layer/Vector';
+
+// const data = require('../../data.json');
+
+// console.log(data)
+
+let geoJSON = new GeoJSON();
 
 class PublicMap extends Component {
   constructor(props) {
@@ -14,12 +27,55 @@ class PublicMap extends Component {
 
     this.state = { center, zoom };
 
+    const vectorLoader = function(extent, resolution, projection) {
+      const url = 'https://cors-anywhere.herokuapp.com/https://israel-sky.s3-eu-west-1.amazonaws.com/1/18/UGRD.json';
+      const xmlhttp = new XMLHttpRequest();
+
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState === XMLHttpRequest.DONE) {
+          // XMLHttpRequest.DONE == 4
+          if (xmlhttp.status === 200) {
+            let features = geoJSON.readFeatures(xmlhttp.responseText, {
+              featureProjection: projection,
+            });
+            source.addFeatures(features);
+          }
+        }
+      };
+
+      xmlhttp.open('GET', url, true);
+      xmlhttp.send();
+    };
+
+    const source = new VectorSource({
+      loader: vectorLoader,
+      format: geoJSON,
+    });
+
+    const styleFunction = function(feature, resolution) {
+      return new Style({
+        stroke: new Stroke({
+          color: 'gray',
+          width: 1,
+        }),
+        fill: new Fill({
+          color: feature.getProperties().color,
+        }),
+      });
+    };
+
+    const layer = new VectorLayer({
+      source: source,
+      style: styleFunction,
+    });
+
     this.olmap = new OlMap({
       target: null,
       layers: [
-        new OlLayerTile({
-          source: new OlSourceOSM(),
+        new TileLayer({
+          source: new OSM(),
         }),
+        layer,
       ],
       view: new OlView({
         center,

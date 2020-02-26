@@ -5,14 +5,19 @@ import Footer from '../../components/Footer';
 import Navigation from '../../components/Navigation';
 import Map from '../../components/Map';
 
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout, Menu, Breadcrumb, Icon, Button } from 'antd';
 const { Header, Content, Sider } = Layout;
 
 const Index = () => (
   <Layout>
     <Layout>
-      <Sider>Sider</Sider>
-      <Content><Map /></Content>
+      <Content>
+        <Map />
+      </Content>
+      <Sider style={{ background: 'white' }} width={360}>
+        <Navigation />
+        <Button>sdfsd</Button>
+      </Sider>
     </Layout>
   </Layout>
 );
