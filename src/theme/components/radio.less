@@ -1,0 +1,40 @@
+@radio-button-active-color: @app-grey10-color;
+@radio-button-color: @app-grey7-color;
+@radio-button-hover-color: @app-grey10-color;
+@radio-button-checked-bg: @app-primary5-color;
+@radio-disabled-button-checked-color: @app-grey10-color;
+@radio-dot-color: @app-grey10-color;
+
+.@{radio-prefix-cls}-button-wrapper {
+  border: @border-width-base @border-style-base @app-primary5-color;
+
+  &:not(:first-child) {
+    &::before {
+      background-color: @app-primary5-color;
+    }
+  }
+
+  &-checked:not(&-disabled) {
+    box-shadow: -1px 0 0 0 @app-primary5-color;
+    border-color: @app-primary5-color;
+    &:hover {
+      border-color: @app-primary5-color;
+      box-shadow: -1px 0 0 0 @app-primary5-color;
+    }
+    &:active {
+      border-color: @app-primary5-color;
+      box-shadow: -1px 0 0 0 @app-primary5-color;
+    }
+    &:first-child {
+      border-color: @app-primary5-color;
+    }
+    &::before {
+      background-color: @app-primary5-color !important;
+      opacity: 0.1;
+    }
+
+  }
+  &:first-child {
+    border-color: @app-primary5-color;
+  }
+}
