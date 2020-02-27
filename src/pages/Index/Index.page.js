@@ -16,7 +16,6 @@ const Index = () => (
       </Content>
       <Sider style={{ background: 'white' }} width={360}>
         <Navigation />
-        <Button>sdfsd</Button>
       </Sider>
     </Layout>
   </Layout>
