@@ -5,6 +5,8 @@
 @radio-disabled-button-checked-color: @app-grey10-color;
 @radio-dot-color: @app-grey10-color;
 
+@app-vertical-pref: 'app-vertical';
+
 .@{radio-prefix-cls}-button-wrapper {
   border: @border-width-base @border-style-base @app-primary5-color;
 
@@ -17,24 +19,61 @@
   &-checked:not(&-disabled) {
     box-shadow: -1px 0 0 0 @app-primary5-color;
     border-color: @app-primary5-color;
+
     &:hover {
       border-color: @app-primary5-color;
       box-shadow: -1px 0 0 0 @app-primary5-color;
     }
+
     &:active {
       border-color: @app-primary5-color;
       box-shadow: -1px 0 0 0 @app-primary5-color;
     }
+
     &:first-child {
       border-color: @app-primary5-color;
     }
+
     &::before {
       background-color: @app-primary5-color !important;
       opacity: 0.1;
     }
 
   }
+
   &:first-child {
     border-color: @app-primary5-color;
   }
 }
+
+// custom radio group
+
+.app-vertical-group {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  .@{radio-prefix-cls}-button-wrapper {
+    font-size: @font-size-lg;
+    height: auto;
+    margin-bottom: 0.75em;
+    padding: 1.25em;
+    border-radius: 0.25em;
+    border-color: @app-grey5-color;
+
+    &-checked {
+      border-color: @app-primary5-color;
+      background-color: @app-primary2-color;
+      box-shadow: none;
+
+      &:hover {
+        box-shadow: none;
+      }
+    }
+
+    &:before {
+      display: none;
+    }
+  }
+}
+
