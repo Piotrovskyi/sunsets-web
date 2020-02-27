@@ -1,0 +1,26 @@
+@tabs-ink-bar-color: @app-primary5-color;
+@tabs-highlight-color: @app-grey10-color;
+@tabs-active-color: @app-grey10-color;
+@tabs-hover-color: @app-grey10-color;
+@tabs-hover-bg-color: @app-grey2-color;
+@tabs-active-bg-color: @app-grey3-color;
+@tabs-horizontal-margin: 0;
+@tabs-horizontal-padding: 16px 32px;
+
+.@{tab-prefix-cls} {
+  &-bar {
+    border-bottom: none;
+  }
+
+  &-nav {
+    .@{tab-prefix-cls}-tab {
+      transition: background-color 0.3s, color 0.3s @ease-in-out;
+      &:hover {
+        background-color: @tabs-hover-bg-color;
+      }
+      &:active {
+        background-color: @tabs-active-bg-color;
+      }
+    }
+  }
+}
