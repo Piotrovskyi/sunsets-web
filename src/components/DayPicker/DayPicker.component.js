@@ -10,9 +10,9 @@ const DayPicker = ({day, setDay}) =>
         value={day}
         className="day-control"
     >
-        <Radio.Button value={dayValuesMap.TODAY}>{TODAY}</Radio.Button>
-        <Radio.Button value={dayValuesMap.TOMORROW}>{TOMORROW}</Radio.Button>
         <Radio.Button value={dayValuesMap.AFTER_TOMORROW}>{AFTER_TOMORROW}</Radio.Button>
+        <Radio.Button value={dayValuesMap.TOMORROW}>{TOMORROW}</Radio.Button>
+        <Radio.Button value={dayValuesMap.TODAY}>{TODAY}</Radio.Button>
     </Radio.Group>;
 
 export default DayPicker;

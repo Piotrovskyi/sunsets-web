@@ -43,6 +43,7 @@ const PhotoSpotsContent = () => {
             <h3 className="time-title">Time</h3>
             <DayPicker day={day} setDay={setDay}/>
             <ParametersSelect
+                title="Photo spots"
                 optionButtons={spotTabParamOptions}
                 currentOption={option}
                 setOption={onSetOption}
