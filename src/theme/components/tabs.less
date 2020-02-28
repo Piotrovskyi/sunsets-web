@@ -24,3 +24,20 @@
     }
   }
 }
+
+// custom modification with prefix
+
+.app-scratch-tab-navs {
+  .@{tab-prefix-cls}-nav {
+    &.@{tab-prefix-cls}-nav-animated {
+      width: 100%;
+      div {
+        display: flex;
+        .@{tab-prefix-cls}-tab {
+          flex-grow: 1;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}

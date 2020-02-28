@@ -13,6 +13,7 @@ const Navigation = () => {
     return (
         <div>
             <Tabs
+                className="app-scratch-tab-navs"
                 tabBarStyle={{"width": "100%"}}
                 defaultActiveKey="2"
                 tabBarExtraContent={logo}
