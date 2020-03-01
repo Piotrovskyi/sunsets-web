@@ -1,11 +1,13 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useContext, useState} from 'react';
 import './WeatherContent.styles.css';
 import {CLOUDS_OPT, RAIN_OPT} from "../../constants/option.constants";
 import CloudIcon from "../../assests/icons/cloud.svg";
 import RainIcon from "../../assests/icons/cloud-drizzle.svg";
 import DayPicker from "../DayPicker";
 import ParametersSelect from "../ParametersSelect";
-import {dayValuesMap} from "../../constants/days.constants";
+import {WeatherContext} from "../../context/WeatherContext";
+import {Button, TimePicker} from "antd";
+import moment from "moment";
 
 const weatherTabParamOptions = [
     {
@@ -22,18 +24,54 @@ const weatherTabParamOptions = [
     }
 ];
 
+const TIME_FORMAT = 'HH:mm';
+
 const WeatherContent = () => {
-    const [day, setDay] = useState(dayValuesMap.TODAY);
-    const [option, setOption] = useState(CLOUDS_OPT);
-    const onSetOption = useCallback((e) => setOption(e.target.value), []);
+    const {
+        state: {
+            day,
+            time,
+            param
+        },
+        mutations: {
+            setDay,
+            setTime,
+            setParam
+        }
+    } = useContext(WeatherContext);
+    const [timePickerValue, serTimePickerValue] = useState(moment());
+    const onSetOption = useCallback((e) => {
+        setParam(e.target.value)
+    }, []);
+    const setNow = () => {
+        // todo fix duplication of time source
+        serTimePickerValue(moment());
+        setTime(moment().get('hours'));
+        setDay(0)
+    };
+    const onChangeTime = time => {
+        // todo fix duplication of time source(2)
+        serTimePickerValue(time);
+        setTime(time.get('hours'));
+    };
+
     return (
         <div style={{padding: '0 24px', textAlign: 'right'}}>
-            <h3 className="time-title">Time</h3>
+            <div className="d-flex justify-content-end">
+                <Button size="small" type="dashed" onClick={setNow}>Now</Button>
+                <h3 className="time-title ml-2">Time</h3>
+            </div>
             <DayPicker day={day} setDay={setDay}/>
+            <TimePicker
+                value={timePickerValue}
+                defaultValue={moment(Date.now())}
+                onChange={onChangeTime}
+                format={TIME_FORMAT}
+            />
             <ParametersSelect
                 title="Weather"
                 optionButtons={weatherTabParamOptions}
-                currentOption={option}
+                currentOption={param}
                 setOption={onSetOption}
             />
         </div>

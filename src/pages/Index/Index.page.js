@@ -1,24 +1,26 @@
 import React from 'react';
 import './Index.styles.css';
-
-import Footer from '../../components/Footer';
 import Navigation from '../../components/Navigation';
 import Map from '../../components/Map';
 
-import { Layout, Menu, Breadcrumb, Icon, Button } from 'antd';
-const { Header, Content, Sider } = Layout;
+import {Layout} from 'antd';
+import {WeatherDataProvider} from "../../context/WeatherContext";
+
+const {Content, Sider} = Layout;
 
 const Index = () => (
-  <Layout>
     <Layout>
-      <Content>
-        <Map />
-      </Content>
-      <Sider style={{ background: 'white' }} width={360}>
-        <Navigation />
-      </Sider>
+        <Layout>
+            <WeatherDataProvider>
+                <Content>
+                    <Map/>
+                </Content>
+                <Sider style={{background: 'white'}} width={360}>
+                    <Navigation/>
+                </Sider>
+            </WeatherDataProvider>
+        </Layout>
     </Layout>
-  </Layout>
 );
 
 export default Index;
