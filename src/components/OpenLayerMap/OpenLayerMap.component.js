@@ -65,10 +65,9 @@ export default class OpenLayerMap {
     }
 
     updateData(features) {
-        const preparedData = geoJSON.readFeatures(features);
+        const preparedData = geoJSON.readFeatures({...features});
         const source = new VectorSource({
             features: preparedData,
-            state: 'ready',
             format: geoJSON,
         });
         this.layer.setSource(source);

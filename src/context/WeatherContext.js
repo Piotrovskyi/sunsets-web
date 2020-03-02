@@ -20,18 +20,24 @@ class WeatherDataProvider extends React.Component {
     state = {...initialValue};
 
     setDay = day => {
-        this.setState(state => ({...state, day, loading: true}));
-        this.fetchFeatures()
+        this.setState(
+            state => ({...state, day, loading: true}),
+            this.fetchFeatures
+        );
     };
 
     setTime = time => {
-        this.setState(state => ({...state, time, loading: true}));
-        this.fetchFeatures()
+        this.setState(
+            state => ({...state, time, loading: true}),
+            this.fetchFeatures
+        );
     };
 
     setParam = param => {
-        this.setState(state => ({...state, param, loading: true}));
-        this.fetchFeatures();
+        this.setState(
+            state => ({...state, param, loading: true}),
+            this.fetchFeatures
+        );
     };
 
     setFeatures = features => this.setState(state => ({...state, features, loading: false}));
