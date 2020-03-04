@@ -3,7 +3,7 @@
 @radio-button-hover-color: @app-grey10-color;
 @radio-button-checked-bg: @app-primary5-color;
 @radio-disabled-button-checked-color: @app-grey10-color;
-@radio-dot-color: @app-grey10-color;
+@radio-dot-color: @app-primary9-color;
 
 @app-vertical-pref: 'app-vertical';
 
@@ -49,6 +49,8 @@
 // custom radio group
 
 .app-vertical-group {
+  @radio-button-color: @app-grey8-color;
+
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -61,10 +63,19 @@
     border-radius: 0.25em;
     border-color: @app-grey5-color;
 
+    svg {
+      font-size: 1.5rem;
+      fill: @app-grey6-color;
+    }
+
     &-checked {
       border-color: @app-primary5-color;
       background-color: @app-primary2-color;
       box-shadow: none;
+
+      svg {
+        fill: @app-primary5-color;
+      }
 
       &:hover {
         box-shadow: none;

@@ -1,16 +1,16 @@
-import React, {useMemo, useState} from 'react';
+import React, {useMemo} from 'react';
 import './Navigation.styles.css';
-import {Tabs, Radio} from 'antd';
-import logoIcon from '../../assests/icons/logo.svg';
+import {Tabs} from 'antd';
 import PhotoSpotsContent from "../PhotoSpotsContent";
 import WeatherContent from "../WetherContent";
+import Icon from "../Icon";
 
 const {TabPane} = Tabs;
 
 
 
 const Navigation = () => {
-    const logo = useMemo(() => <figure className="px-3 d-inline-block"><img src={logoIcon} alt="logo"/></figure>, []);
+    const logo = useMemo(() => <a href='#' className="d-flex p-3 h-100"><Icon className="logo-icon" iconName='logo'/></a>, []);
 
     return (
         <div>

@@ -1,25 +1,22 @@
 import React, {useCallback, useContext, useState} from 'react';
 import './WeatherContent.styles.css';
 import {CLOUDS_OPT, RAIN_OPT} from "../../constants/option.constants";
-import CloudIcon from "../../assests/icons/cloud.svg";
-import RainIcon from "../../assests/icons/cloud-drizzle.svg";
 import DayPicker from "../DayPicker";
 import ParametersSelect from "../ParametersSelect";
 import {WeatherContext} from "../../context/WeatherContext";
 import {Button, TimePicker} from "antd";
 import moment from "moment";
+import Title from "antd/lib/typography/Title";
 
 const weatherTabParamOptions = [
     {
         value: CLOUDS_OPT,
-        img: CloudIcon,
-        alt: "Cloud",
+        icon: "cloud",
         text: "Clouds"
     },
     {
         value: RAIN_OPT,
-        img: RainIcon,
-        alt: "Cloud drizzle",
+        icon: "cloud-drizzle",
         text: "Rain"
     }
 ];
@@ -57,9 +54,9 @@ const WeatherContent = () => {
 
     return (
         <div style={{padding: '0 24px', textAlign: 'right'}}>
-            <div className="d-flex justify-content-end">
-                <Button size="small" type="dashed" onClick={setNow}>Now</Button>
-                <h3 className="time-title ml-2">Time</h3>
+            <div className="d-flex justify-content-end mb-1">
+                <Button className="mx-2" size="small" type="dashed" onClick={setNow}>Now</Button>
+                <Title type="secondary" style={{fontSize: '16px'}} level={3}>Time</Title>
             </div>
             <DayPicker day={day} setDay={setDay}/>
             <TimePicker

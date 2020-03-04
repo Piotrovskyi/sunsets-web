@@ -1,38 +1,34 @@
 import React, {useMemo} from 'react';
 import './ParametersSelect.styles.css';
 import {Radio} from "antd";
-
-
-const optionMap = {
-    CLOUDS: 'Clouds',
-    SUNRISE: 'Sunrise',
-    SUNSET: 'Sunset',
-    THUNDER: 'Thunder',
-};
+import Title from "antd/lib/typography/Title";
+import Icon from "../Icon";
 
 const ParametersSelect = ({title, setOption, currentOption, optionButtons}) => {
 
     const Options = useMemo(() => optionButtons.map(
         ({
              value,
-             img,
-             alt,
+             icon,
              text,
-        }) => <Radio.Button key={value} value={value}>{text}
-            <span className="pl-3">
-                <img src={img} alt={alt}/>
+        }) => <Radio.Button key={value} value={value} >
+            <span className="d-flex justify-content-end align-items-center">
+                {text}
+                <span className="pl-3 d-inline-flex">
+                    <Icon iconName={icon}/>
+                </span>
             </span>
         </Radio.Button>
     ),
         [currentOption, optionButtons]
     );
 
-    return <div>
-        <h2 className="">{title}</h2>
+    return <div className="mt-5">
+        <Title level={2} style={{fontSize: '20px'}}>{title}</Title>
         <Radio.Group prefixCls="app-vertical" size="large" onChange={setOption} value={currentOption}>
             {Options}
         </Radio.Group>
     </div>;
-}
+};
 
 export default ParametersSelect;

@@ -2,33 +2,26 @@ import React, {useCallback, useState} from 'react';
 import './PhotoSpotsContent.styles.css';
 import ParametersSelect from "../ParametersSelect";
 import {CLOUDS_OPT, SUNRISE_OPT, SUNSET_OPT, THUNDER_OPT} from "../../constants/option.constants";
-import CloudIcon from "../../assests/icons/cloud.svg";
-import SunriseIcon from "../../assests/icons/sunrise.svg";
-import SunsetIcon from "../../assests/icons/sunset.svg";
-import ThunderIcon from "../../assests/icons/cloud-lightning.svg";
 import DayPicker from "../DayPicker";
 import {dayValuesMap} from "../../constants/days.constants";
+import Title from "antd/lib/typography/Title";
 
 const spotTabParamOptions = [
     {
         value: CLOUDS_OPT,
-        img: CloudIcon,
-        alt: "Cloud",
+        icon: "cloud",
         text: "Clouds"
     }, {
         value: SUNRISE_OPT,
-        img: SunriseIcon,
-        alt: "Sunrise",
+        icon: "sunrise",
         text: "Sunrise"
     }, {
         value: SUNSET_OPT,
-        img: SunsetIcon,
-        alt: "Sunset",
+        icon: "sunset",
         text: "Sunset"
     }, {
         value: THUNDER_OPT,
-        img: ThunderIcon,
-        alt: "Thunder",
+        icon: "cloud-lightning",
         text: "Thunder"
     },
 ];
@@ -40,7 +33,7 @@ const PhotoSpotsContent = () => {
 
     return (
         <div style={{padding: '0 24px', textAlign: 'right'}}>
-            <h3 className="time-title">Time</h3>
+            <Title type="secondary" style={{fontSize: '16px' }} level={3}>Time</Title>
             <DayPicker day={day} setDay={setDay}/>
             <ParametersSelect
                 title="Photo spots"
