@@ -1,6 +1,8 @@
-export const TODAY = 'Today';
-export const TOMORROW = 'Tomorrow';
-export const AFTER_TOMORROW = 'After Tomorrow';
+import t from "../utils/getTranstalion";
+
+export const TODAY = t('days.today');
+export const TOMORROW = t('days.tomorrow');
+export const AFTER_TOMORROW = t('days.after_tomorrow');
 
 export const dayValuesMap = {
     TODAY: 0,
