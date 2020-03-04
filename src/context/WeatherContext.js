@@ -2,7 +2,7 @@ import {dayValuesMap} from "../constants/days.constants";
 import * as React from "react";
 import moment from "moment";
 import {CLOUDS_OPT} from "../constants/option.constants";
-import {MAP_DATA_URL} from "../constants/map.constants";
+import {WEATHER_DATA_URL} from "../constants/map.constants";
 
 const initialValue = {
     day: dayValuesMap.TODAY,
@@ -46,7 +46,7 @@ class WeatherDataProvider extends React.Component {
 
     fetchFeatures = () => {
         const {state: {day, time, param}} = this;
-        fetch(`${MAP_DATA_URL}${day}/${time}/${param}.json`)
+        fetch(`${WEATHER_DATA_URL}${day}/${time}/${param}.json`)
             .then(data => data.json())
             .then(this.setFeatures)
             .catch(this.setError)

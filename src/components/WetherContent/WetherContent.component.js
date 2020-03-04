@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useMemo} from 'react';
+import React, {useCallback, useContext, useEffect, useMemo} from 'react';
 import './WeatherContent.styles.css';
 import {CLOUDS_OPT, RAIN_OPT} from "../../constants/option.constants";
 import DayPicker from "../DayPicker";
@@ -7,7 +7,10 @@ import {WeatherContext} from "../../context/WeatherContext";
 import {Button, TimePicker} from "antd";
 import moment from "moment";
 import Title from "antd/lib/typography/Title";
+import { useDispatch } from "react-redux"
 import t from "../../utils/getTranstalion";
+import {REQUEST} from "../../constants/saga.constants";
+import {fetchWeatherParamsTypes} from "../../store/weatherParams/weatherParams.constants";
 
 const weatherTabParamOptions = [
     {
@@ -37,6 +40,12 @@ const WeatherContent = () => {
             setParam
         }
     } = useContext(WeatherContext);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch({ type: fetchWeatherParamsTypes[REQUEST]})
+    }, []);
+
     const onSetOption = useCallback((e) => {
         setParam(e.target.value)
     }, []);
