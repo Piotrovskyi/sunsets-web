@@ -20,7 +20,7 @@ const Navigation = () => {
                 defaultActiveKey="2"
                 tabBarExtraContent={logo}
             >
-                <TabPane tab="Weather" key="1">
+                <TabPane tab="Weather" key="1" className="py-4">
                     <WeatherContent/>
                 </TabPane>
                 <TabPane tab="Photo spots" key="2" className="py-4">

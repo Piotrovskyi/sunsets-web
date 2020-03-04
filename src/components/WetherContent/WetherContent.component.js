@@ -36,21 +36,18 @@ const WeatherContent = () => {
             setParam
         }
     } = useContext(WeatherContext);
-    const [timePickerValue, serTimePickerValue] = useState(moment());
     const onSetOption = useCallback((e) => {
         setParam(e.target.value)
     }, []);
     const setNow = () => {
-        // todo fix duplication of time source
-        serTimePickerValue(moment());
         setTime(moment().get('hours'));
         setDay(0)
     };
     const onChangeTime = time => {
-        // todo fix duplication of time source(2)
-        serTimePickerValue(time);
         setTime(time.get('hours'));
     };
+
+    const displayedTime = moment().set('hours', time).startOf('hour');
 
     return (
         <div style={{padding: '0 24px', textAlign: 'right'}}>
@@ -60,10 +57,14 @@ const WeatherContent = () => {
             </div>
             <DayPicker day={day} setDay={setDay}/>
             <TimePicker
-                value={timePickerValue}
+                className="mt-3"
+                style={{width: '86px'}}
+                allowClear={false}
+                value={displayedTime}
                 defaultValue={moment(Date.now())}
                 onChange={onChangeTime}
                 format={TIME_FORMAT}
+                minuteStep={60}
             />
             <ParametersSelect
                 title="Weather"

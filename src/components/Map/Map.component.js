@@ -4,8 +4,8 @@ import {MAP_CONTAINER_ID} from "../../constants/map.constants";
 import OpenLayerMap from "../OpenLayerMap";
 import {WeatherContext} from "../../context/WeatherContext";
 
-const center = [4000000, 3800000];
-const zoom = 8;
+const center = [4050000, 3700000];
+const zoom = 7.5;
 
 const Map = () => {
     const [OLMap, setOLMap] = useState(null);
