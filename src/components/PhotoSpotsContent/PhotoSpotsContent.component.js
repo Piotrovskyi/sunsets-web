@@ -33,15 +33,17 @@ const PhotoSpotsContent = () => {
     const onSetOption = useCallback((e) => setOption(e.target.value), []);
 
     return (
-        <div style={{padding: '0 24px', textAlign: 'right'}}>
+        <div className="pl-2 pr-4 text-right">
             <Title type="secondary" style={{fontSize: '16px' }} level={3}>{t('general.time')}</Title>
             <DayPicker day={day} setDay={setDay}/>
-            <ParametersSelect
-                title={t('navigation.photo_spots')}
-                optionButtons={spotTabParamOptions}
-                currentOption={option}
-                setOption={onSetOption}
-            />
+            <div className="pl-3">
+                <ParametersSelect
+                    title={t('navigation.photo_spots')}
+                    optionButtons={spotTabParamOptions}
+                    currentOption={option}
+                    setOption={onSetOption}
+                />
+            </div>
         </div>
     );
 };

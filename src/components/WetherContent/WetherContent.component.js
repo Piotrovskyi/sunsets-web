@@ -51,14 +51,14 @@ const WeatherContent = () => {
     const displayedTime = useMemo(() => moment().set('hours', time).startOf('hour'), [time]);
 
     return (
-        <div style={{padding: '0 24px', textAlign: 'right'}}>
+        <div className="pl-2 pr-4 text-right">
             <div className="d-flex justify-content-end mb-1">
-                <Button className="mx-2" size="small" type="dashed" onClick={setNow}>{t('general.now')}</Button>
+                <Button className="mx-3" size="small" type="dashed" onClick={setNow}>{t('general.now')}</Button>
                 <Title type="secondary" style={{fontSize: '16px'}} level={3}>{t('general.time')}</Title>
             </div>
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="d-flex justify-content-end align-items-center flex-wrap-reverse">
                 <TimePicker
-                    className="my-1"
+                    className="mt-1 ml-3"
                     style={{width: '86px'}}
                     allowClear={false}
                     value={displayedTime}
@@ -67,14 +67,18 @@ const WeatherContent = () => {
                     format={TIME_FORMAT}
                     minuteStep={60}
                 />
-                <DayPicker day={day} setDay={setDay}/>
+                <div className="ml-auto">
+                    <DayPicker  day={day} setDay={setDay}/>
+                </div>
             </div>
-            <ParametersSelect
-                title={t('navigation.weather')}
-                optionButtons={weatherTabParamOptions}
-                currentOption={param}
-                setOption={onSetOption}
-            />
+            <div className="pl-3">
+                <ParametersSelect
+                    title={t('navigation.weather')}
+                    optionButtons={weatherTabParamOptions}
+                    currentOption={param}
+                    setOption={onSetOption}
+                />
+            </div>
         </div>
     )
 };
