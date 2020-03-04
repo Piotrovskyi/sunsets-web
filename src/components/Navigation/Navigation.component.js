@@ -4,6 +4,7 @@ import {Tabs} from 'antd';
 import PhotoSpotsContent from "../PhotoSpotsContent";
 import WeatherContent from "../WetherContent";
 import Icon from "../Icon";
+import t from "../../utils/getTranstalion";
 
 const {TabPane} = Tabs;
 
@@ -20,10 +21,10 @@ const Navigation = () => {
                 defaultActiveKey="2"
                 tabBarExtraContent={logo}
             >
-                <TabPane tab="Weather" key="1" className="py-4">
+                <TabPane tab={t('navigation.weather')} key="1" className="py-4">
                     <WeatherContent/>
                 </TabPane>
-                <TabPane tab="Photo spots" key="2" className="py-4">
+                <TabPane tab={t('navigation.photo_spots')} key="2" className="py-4">
                     <PhotoSpotsContent />
                 </TabPane>
             </Tabs>

@@ -5,24 +5,25 @@ import {CLOUDS_OPT, SUNRISE_OPT, SUNSET_OPT, THUNDER_OPT} from "../../constants/
 import DayPicker from "../DayPicker";
 import {dayValuesMap} from "../../constants/days.constants";
 import Title from "antd/lib/typography/Title";
+import t from "../../utils/getTranstalion";
 
 const spotTabParamOptions = [
     {
         value: CLOUDS_OPT,
         icon: "cloud",
-        text: "Clouds"
+        text: t('options.clouds')
     }, {
         value: SUNRISE_OPT,
         icon: "sunrise",
-        text: "Sunrise"
+        text: t('options.sunrise')
     }, {
         value: SUNSET_OPT,
         icon: "sunset",
-        text: "Sunset"
+        text: t('options.sunset')
     }, {
         value: THUNDER_OPT,
         icon: "cloud-lightning",
-        text: "Thunder"
+        text: t('options.thunder')
     },
 ];
 
@@ -33,10 +34,10 @@ const PhotoSpotsContent = () => {
 
     return (
         <div style={{padding: '0 24px', textAlign: 'right'}}>
-            <Title type="secondary" style={{fontSize: '16px' }} level={3}>Time</Title>
+            <Title type="secondary" style={{fontSize: '16px' }} level={3}>{t('general.time')}</Title>
             <DayPicker day={day} setDay={setDay}/>
             <ParametersSelect
-                title="Photo spots"
+                title={t('navigation.photo_spots')}
                 optionButtons={spotTabParamOptions}
                 currentOption={option}
                 setOption={onSetOption}
