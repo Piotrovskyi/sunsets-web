@@ -1,58 +1,51 @@
-import React, {useCallback, useContext, useEffect, useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import './WeatherContent.styles.css';
-import {CLOUDS_OPT, RAIN_OPT} from "../../constants/option.constants";
 import DayPicker from "../DayPicker";
 import ParametersSelect from "../ParametersSelect";
-import {WeatherContext} from "../../context/WeatherContext";
 import {Button, TimePicker} from "antd";
 import moment from "moment";
 import Title from "antd/lib/typography/Title";
-import { useDispatch } from "react-redux"
+import {useDispatch} from "react-redux"
 import t from "../../utils/getTranstalion";
-import {REQUEST} from "../../constants/saga.constants";
-import {fetchWeatherParamsTypes} from "../../store/weatherParams/weatherParams.constants";
-
-const weatherTabParamOptions = [
-    {
-        value: CLOUDS_OPT,
-        icon: "cloud",
-        text: t('options.clouds')
-    },
-    {
-        value: RAIN_OPT,
-        icon: "cloud-drizzle",
-        text: t('options.rain')
-    }
-];
+import {useSelector} from 'react-redux';
+import {selectWeatherDay, selectWeatherParam, selectWeatherTime} from "../../store/weather/weather.selectors";
+import {
+    getSetWeatherDayAction,
+    getSetWeatherParamAction,
+    getSetWeatherTimeAction
+} from "../../store/weather/weather.actions";
+import {getFetchWeatherParamsAction} from "../../store/weatherParams/weatherParams.actions";
+import {
+    selectParamsLoading,
+    selectPreparedParams
+} from "../../store/weatherParams/weatherParams.selectors";
 
 const TIME_FORMAT = 'HH:mm';
 
 const WeatherContent = () => {
-    const {
-        state: {
-            day,
-            time,
-            param
-        },
-        mutations: {
-            setDay,
-            setTime,
-            setParam
-        }
-    } = useContext(WeatherContext);
     const dispatch = useDispatch();
+    const day = useSelector(selectWeatherDay);
+    const time = useSelector(selectWeatherTime);
+    const param = useSelector(selectWeatherParam);
+    const params = useSelector(selectPreparedParams);
+    const paramsLoading = useSelector(selectParamsLoading);
+    const setDay = day => dispatch(getSetWeatherDayAction(day));
+    const setTime = time => dispatch(getSetWeatherTimeAction(time));
+    const setParam = param => dispatch(getSetWeatherParamAction(param));
 
     useEffect(() => {
-        dispatch({ type: fetchWeatherParamsTypes[REQUEST]})
+        dispatch(getFetchWeatherParamsAction());
     }, []);
 
-    const onSetOption = useCallback((e) => {
+    const onSetParam = useCallback((e) => {
         setParam(e.target.value)
     }, []);
+
     const setNow = () => {
         setTime(moment().get('hours'));
         setDay(0)
     };
+
     const onChangeTime = time => {
         setTime(time.get('hours'));
     };
@@ -77,15 +70,16 @@ const WeatherContent = () => {
                     minuteStep={60}
                 />
                 <div className="ml-auto">
-                    <DayPicker  day={day} setDay={setDay}/>
+                    <DayPicker day={day} setDay={setDay}/>
                 </div>
             </div>
             <div className="pl-3">
                 <ParametersSelect
+                    loading={paramsLoading}
                     title={t('navigation.weather')}
-                    optionButtons={weatherTabParamOptions}
+                    optionButtons={params}
                     currentOption={param}
-                    setOption={onSetOption}
+                    setOption={onSetParam}
                 />
             </div>
         </div>

@@ -1,4 +1,3 @@
-import React from 'react';
 import './OpenLayerMap.styles.css';
 import 'ol/ol.css';
 import OlMap from 'ol/Map';
@@ -29,7 +28,7 @@ export default class OpenLayerMap {
             format: geoJSON,
         });
 
-        const styleFunction = function (feature, resolution) {
+        const styleFunction = function (feature) {
             return new Style({
                 stroke: new Stroke({
                     color: 'blue',
@@ -65,9 +64,8 @@ export default class OpenLayerMap {
     }
 
     updateData(features) {
-        const preparedData = geoJSON.readFeatures({...features});
         const source = new VectorSource({
-            features: preparedData,
+            features: features ? geoJSON.readFeatures({...features}): null,
             format: geoJSON,
         });
         this.layer.setSource(source);

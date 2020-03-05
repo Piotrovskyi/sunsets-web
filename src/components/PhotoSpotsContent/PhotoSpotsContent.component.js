@@ -1,11 +1,13 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback} from 'react';
 import './PhotoSpotsContent.styles.css';
 import ParametersSelect from "../ParametersSelect";
 import {CLOUDS_OPT, SUNRISE_OPT, SUNSET_OPT, THUNDER_OPT} from "../../constants/option.constants";
 import DayPicker from "../DayPicker";
-import {dayValuesMap} from "../../constants/days.constants";
 import Title from "antd/lib/typography/Title";
 import t from "../../utils/getTranstalion";
+import {useDispatch, useSelector} from "react-redux";
+import {selectPhotoSpotsDay, selectPhotoSpotsParam} from "../../store/photoSpots/photoSpots.selectors";
+import {getSetPhotoSpotsDayAction, getSetPhotoSpotsParamAction} from "../../store/photoSpots/photoSpots.actions";
 
 const spotTabParamOptions = [
     {
@@ -28,9 +30,12 @@ const spotTabParamOptions = [
 ];
 
 const PhotoSpotsContent = () => {
-    const [day, setDay] = useState(dayValuesMap.TODAY);
-    const [option, setOption] = useState(CLOUDS_OPT);
-    const onSetOption = useCallback((e) => setOption(e.target.value), []);
+    const dispatch = useDispatch();
+    const day = useSelector(selectPhotoSpotsDay);
+    const param = useSelector(selectPhotoSpotsParam);
+    const setDay = day => dispatch(getSetPhotoSpotsDayAction(day));
+    const setParam = param => dispatch(getSetPhotoSpotsParamAction(param));
+    const onSetParam = useCallback((e) => setParam(e.target.value), []);
 
     return (
         <div className="pl-2 pr-4 text-right">
@@ -40,8 +45,8 @@ const PhotoSpotsContent = () => {
                 <ParametersSelect
                     title={t('navigation.photo_spots')}
                     optionButtons={spotTabParamOptions}
-                    currentOption={option}
-                    setOption={onSetOption}
+                    currentOption={param}
+                    setOption={onSetParam}
                 />
             </div>
         </div>

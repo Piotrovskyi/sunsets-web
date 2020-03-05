@@ -1,13 +1,12 @@
 import createReducer from "../../utils/createReducer";
 import {dayValuesMap} from "../../constants/days.constants";
 import moment from "moment";
-import {CLOUDS_OPT} from "../../constants/option.constants";
 import {SET_DAY, SET_ERRORS, SET_FEATURES, SET_LOADING, SET_PARAM, SET_TIME} from "./weather.constants";
 
 const initialState = {
     day: dayValuesMap.TODAY,
     time: moment().get('hours'),
-    param: CLOUDS_OPT,
+    param: null,
     features: null,
     loading: false,
     errors: null,

@@ -4,23 +4,20 @@ import Navigation from '../../components/Navigation';
 import Map from '../../components/Map';
 
 import {Layout} from 'antd';
-import {WeatherDataProvider} from "../../context/WeatherContext";
-import { Provider } from 'react-redux'
+import {Provider} from 'react-redux'
 
 const {Content, Sider} = Layout;
 
-const Index = ({ store }) => (
+const Index = ({store}) => (
     <Provider store={store}>
         <Layout>
             <Layout>
-                <WeatherDataProvider>
-                    <Content>
-                        <Map/>
-                    </Content>
-                    <Sider style={{background: 'white'}} width={360}>
-                        <Navigation/>
-                    </Sider>
-                </WeatherDataProvider>
+                <Content>
+                    <Map/>
+                </Content>
+                <Sider style={{background: 'white'}} width={360}>
+                    <Navigation/>
+                </Sider>
             </Layout>
         </Layout>
     </Provider>

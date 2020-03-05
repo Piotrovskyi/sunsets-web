@@ -2,7 +2,7 @@ import createReducer from "../../utils/createReducer";
 import {SET_ERRORS, SET_LOADING, SET_PARAMS} from "./weatherParams.constants";
 
 const initialState = {
-    params: {},
+    params: [],
     loading: false,
     errors: null,
 };

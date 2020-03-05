@@ -7,14 +7,15 @@ import {
     getSetWeatherParamsLoadingAction
 } from "./weatherParams.actions";
 import {WEATHER_PARAMS_DATA_URL} from "../../constants/map.constants";
+import {getSetWeatherParamAction} from "../weather/weather.actions";
 
 function* fetchWeatherParams(action) {
-    console.log(action);
     yield put(getSetWeatherParamsLoadingAction(true));
     try {
         const data = yield call(fetch, WEATHER_PARAMS_DATA_URL);
         const {params} = yield call([data, data.json]);
         yield put(getSetWeatherParamsAction(params));
+        yield put(getSetWeatherParamAction(params[0].id));
     } catch (e) {
         yield put(getSetWeatherParamsErrorsAction(e));
     }

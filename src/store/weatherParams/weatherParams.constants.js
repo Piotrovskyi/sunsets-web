@@ -11,3 +11,4 @@ export const SET_ERRORS = setWeatherPrefix('SET_ERRORS');
 export const SET_PARAMS = setWeatherPrefix('SET_PARAMS');
 
 export const fetchWeatherParamsTypes = createRequestReducerTypes(fetchWeatherParamsPrefix);
+export const storeKey = 'weatherParams';

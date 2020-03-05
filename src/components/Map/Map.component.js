@@ -1,26 +1,25 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import 'ol/ol.css';
 import {MAP_CONTAINER_ID} from "../../constants/map.constants";
 import OpenLayerMap from "../OpenLayerMap";
-import {WeatherContext} from "../../context/WeatherContext";
+import {useSelector} from "react-redux";
+import {selectFeaturesByTab} from "../../store/selectors";
 
 const center = [4050000, 3700000];
 const zoom = 7.5;
 
 const Map = () => {
     const [OLMap, setOLMap] = useState(null);
-
-    const {state: {features}, mutations: {fetchFeatures}} = useContext(WeatherContext);
+    const features = useSelector(selectFeaturesByTab);
     useEffect(() => {
-        fetchFeatures();
         setOLMap(new OpenLayerMap(center, zoom));
     }, []);
 
     useEffect(() => {
-        if (features) {
+        if (OLMap) {
             OLMap.updateData(features)
         }
-    }, [features]);
+    }, [features, OLMap]);
     return <div id={MAP_CONTAINER_ID} style={{width: '100%', height: '100vh'}}/>
 };
 
