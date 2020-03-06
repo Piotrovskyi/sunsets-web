@@ -1,0 +1,16 @@
+@menu-highlight-color: @primary-color;
+@menu-item-color:  @app-grey8-color;
+@menu-item-active-bg: @app-grey3-color;
+
+@menu-prefix-cls: ~'@{ant-prefix}-menu';
+
+.custom-flex-menu.@{menu-prefix-cls} {
+  display: flex;
+  align-items: center;
+  border-bottom-width: 0;
+
+  .@{menu-prefix-cls}-item {
+    width: 100%;
+    text-align: center;
+  }
+}

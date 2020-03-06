@@ -33,6 +33,16 @@
 // custom modification with prefix
 
 .app-scratch-tab-navs {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  .@{tab-prefix-cls}-content {
+    flex-grow: 1;
+    //overflow-y: hidden;
+    position: relative;
+  }
+
   .@{tab-prefix-cls}-nav {
     &.@{tab-prefix-cls}-nav-animated {
       width: 100%;

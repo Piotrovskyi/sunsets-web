@@ -1,26 +1,31 @@
 import React from 'react';
 import './Index.styles.css';
-import Navigation from '../../components/Navigation';
 import Map from '../../components/Map';
 
 import {Layout} from 'antd';
 import {Provider} from 'react-redux'
-
-const {Content, Sider} = Layout;
+import MapSettings from "../../components/MapSettings";
+import MapNavigation from "../../components/MapNavigation";
+import {ScreenSizeProvider} from "../../context/screenSizeContext";
 
 const Index = ({store}) => (
-    <Provider store={store}>
-        <Layout>
-            <Layout>
-                <Content>
-                    <Map/>
-                </Content>
-                <Sider style={{background: 'white'}} width={360}>
-                    <Navigation/>
-                </Sider>
+    <ScreenSizeProvider>
+        <Provider store={store}>
+            <Layout style={{height: '100vh', overflowY: 'hidden'}}>
+                <div className="map-responsive">
+                    <div className="map-responsive__header">
+                        <MapNavigation />
+                    </div>
+                    <div className="flex order map-responsive__map">
+                        <Map/>
+                    </div>
+                    <div className="map-responsive__settings">
+                        <MapSettings />
+                    </div>
+                </div>
             </Layout>
-        </Layout>
-    </Provider>
+        </Provider>
+    </ScreenSizeProvider>
 );
 
 export default Index;

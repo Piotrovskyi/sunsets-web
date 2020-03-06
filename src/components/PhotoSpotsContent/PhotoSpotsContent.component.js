@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useContext} from 'react';
 import './PhotoSpotsContent.styles.css';
 import ParametersSelect from "../ParametersSelect";
 import {CLOUDS_OPT, SUNRISE_OPT, SUNSET_OPT, THUNDER_OPT} from "../../constants/option.constants";
@@ -8,6 +8,7 @@ import t from "../../utils/getTranstalion";
 import {useDispatch, useSelector} from "react-redux";
 import {selectPhotoSpotsDay, selectPhotoSpotsParam} from "../../store/photoSpots/photoSpots.selectors";
 import {getSetPhotoSpotsDayAction, getSetPhotoSpotsParamAction} from "../../store/photoSpots/photoSpots.actions";
+import {ScreenSizeContext} from "../../context/screenSizeContext";
 
 const spotTabParamOptions = [
     {
@@ -35,18 +36,19 @@ const PhotoSpotsContent = () => {
     const param = useSelector(selectPhotoSpotsParam);
     const setDay = day => dispatch(getSetPhotoSpotsDayAction(day));
     const setParam = param => dispatch(getSetPhotoSpotsParamAction(param));
-    const onSetParam = useCallback((e) => setParam(e.target.value), []);
+    const { isMobile } = useContext(ScreenSizeContext);
 
     return (
-        <div className="pl-2 pr-4 text-right">
-            <Title type="secondary" style={{fontSize: '16px' }} level={3}>{t('general.time')}</Title>
+        <div className="px-0 pl-md-2 pr-md-4 text-right">
+            <Title type="secondary" className="d-none d-md-inline-block" style={{fontSize: '16px' }} level={3}>{t('general.time')}</Title>
             <DayPicker day={day} setDay={setDay}/>
-            <div className="pl-3">
+            <div className="pl-0 pl-md-3">
                 <ParametersSelect
+                    isMobile={isMobile}
                     title={t('navigation.photo_spots')}
                     optionButtons={spotTabParamOptions}
                     currentOption={param}
-                    setOption={onSetParam}
+                    setOption={setParam}
                 />
             </div>
         </div>

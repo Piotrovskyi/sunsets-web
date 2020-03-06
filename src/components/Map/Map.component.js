@@ -20,7 +20,7 @@ const Map = () => {
             OLMap.updateData(features)
         }
     }, [features, OLMap]);
-    return <div id={MAP_CONTAINER_ID} style={{width: '100%', height: '100vh'}}/>
+    return <div className="w-100% h-100"  id={MAP_CONTAINER_ID}/>
 };
 
 export default Map;

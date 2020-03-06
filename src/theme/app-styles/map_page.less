@@ -1,0 +1,46 @@
+@map-responsive-width: 360px;
+@map-responsive-md-width: auto;
+@map-responsive-header-height: 56px;
+
+.map-responsive {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: @screen-md) {
+    flex-wrap: nowrap;
+  }
+
+  &__header {
+    width: @map-responsive-width;
+    height: @map-responsive-header-height;
+    @media screen and (max-width: @screen-md) {
+      width: @map-responsive-md-width;
+    }
+  }
+
+  &__map {
+    flex-grow: 1;
+    order: -1;
+    height: 100%;
+    width: calc(100vw - @map-responsive-width);
+    @media screen and (max-width: @screen-md) {
+      order: 0;
+      width: 100%;
+    }
+  }
+
+  &__settings {
+    width: @map-responsive-width;
+    flex-grow: 1;
+    overflow: auto;
+    max-height: calc(100vh - @map-responsive-header-height);
+    @media screen and (max-width: @screen-md) {
+      width: @map-responsive-md-width;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+  }
+}
