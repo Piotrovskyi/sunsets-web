@@ -1,6 +1,7 @@
 @menu-highlight-color: @primary-color;
 @menu-item-color:  @app-grey8-color;
 @menu-item-active-bg: @app-grey3-color;
+//@menu-highlight-color: @app-grey10-color;
 
 @menu-prefix-cls: ~'@{ant-prefix}-menu';
 
@@ -12,5 +13,13 @@
   .@{menu-prefix-cls}-item {
     width: 100%;
     text-align: center;
+
+    &:hover,
+    &-active,
+    &-selected {
+      color: @app-grey10-color;
+      border-bottom-color: @primary-color;
+    }
   }
+
 }

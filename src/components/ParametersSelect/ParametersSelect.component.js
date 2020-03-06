@@ -47,6 +47,7 @@ const ParametersSelectMobile = ({title, setOption, currentOption, optionButtons,
             style={{width: '100%'}}
             onChange={setOption}
             value={currentOption}
+            suffixIcon={<Icon iconName="selector"/>}
         >
             {Options}
         </Select>

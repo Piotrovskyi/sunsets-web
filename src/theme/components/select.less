@@ -1,0 +1,34 @@
+@select-dropdown-vertical-padding: 22px;
+@select-border-color: @app-primary5-color;
+@app-select-horizontal-padding: 56px;
+
+.@{select-prefix-cls} {
+  &-dropdown-menu-item {
+    text-align: right;
+    padding-right: @app-select-horizontal-padding;
+    padding-left: @app-select-horizontal-padding;
+  }
+
+  &-selection {
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: @app-select-horizontal-padding;
+    padding-left: @app-select-horizontal-padding;
+
+    &--single {
+      height: 67px;
+    }
+
+    &-selected-value {
+      font-size: 16px;
+
+    }
+  }
+
+  &-arrow {
+    right: auto;
+    left: calc(@app-select-horizontal-padding / 2);
+  }
+}
