@@ -2,30 +2,30 @@ import React from 'react';
 import './Index.styles.css';
 import Map from '../../components/Map';
 
-import {Layout} from 'antd';
-import {Provider} from 'react-redux'
-import MapSettings from "../../components/MapSettings";
-import MapNavigation from "../../components/MapNavigation";
-import {ScreenSizeProvider} from "../../context/screenSizeContext";
+import { Layout } from 'antd';
+import { Provider } from 'react-redux';
+import MapSettings from '../../components/MapSettings';
+import MapNavigation from '../../components/MapNavigation';
+import { ScreenSizeProvider } from '../../context/screenSizeContext';
 
-const Index = ({store}) => (
-    <ScreenSizeProvider>
-        <Provider store={store}>
-            <Layout style={{height: '100vh', overflowY: 'hidden'}}>
-                <div className="map-responsive">
-                    <div className="map-responsive__header">
-                        <MapNavigation />
-                    </div>
-                    <div className="flex order map-responsive__map">
-                        <Map/>
-                    </div>
-                    <div className="map-responsive__settings">
-                        <MapSettings />
-                    </div>
-                </div>
-            </Layout>
-        </Provider>
-    </ScreenSizeProvider>
+const Index = ({ store }) => (
+  <ScreenSizeProvider>
+    <Provider store={store}>
+      <Layout style={{ height: '100vh', overflowY: 'hidden' }}>
+        <div className="map-responsive">
+          <div className="map-responsive__header">
+            <MapNavigation />
+          </div>
+          <div className="flex order map-responsive__map">
+            <Map />
+          </div>
+          <div className="map-responsive__settings">
+            <MapSettings />
+          </div>
+        </div>
+      </Layout>
+    </Provider>
+  </ScreenSizeProvider>
 );
 
 export default Index;

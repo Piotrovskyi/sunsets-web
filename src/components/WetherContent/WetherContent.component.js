@@ -34,9 +34,9 @@ const WeatherContent = () => {
   const param = useSelector(selectWeatherParam);
   const params = useSelector(selectPreparedParams);
   const paramsLoading = useSelector(selectParamsLoading);
-  const setDay = day => dispatch(getSetWeatherDayAction(day));
-  const setTime = time => dispatch(getSetWeatherTimeAction(time));
-  const setParam = param => dispatch(getSetWeatherParamAction(param));
+  const setDay = (day) => dispatch(getSetWeatherDayAction(day));
+  const setTime = (time) => dispatch(getSetWeatherTimeAction(time));
+  const setParam = (param) => dispatch(getSetWeatherParamAction(param));
   const { isMobile } = useContext(ScreenSizeContext);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const WeatherContent = () => {
     setDay(0);
   };
 
-  const onChangeTime = time => {
+  const onChangeTime = (time) => {
     setTime(time.get('hours'));
   };
 
@@ -57,17 +57,15 @@ const WeatherContent = () => {
       className="mx-3"
       size={isMobile ? 'large' : 'small'}
       type={isMobile ? 'link' : 'dashed'}
-      onClick={setNow}>
+      onClick={setNow}
+    >
       {t('general.now')}
     </Button>
   );
 
   const displayedTime = useMemo(
-    () =>
-      moment()
-        .set('hours', time)
-        .startOf('hour'),
-    [time],
+    () => moment().set('hours', time).startOf('hour'),
+    [time]
   );
 
   // todo refactor. make responsive view simple
@@ -80,7 +78,8 @@ const WeatherContent = () => {
             className="d-none d-md-inline-block"
             type="secondary"
             style={{ fontSize: '16px' }}
-            level={3}>
+            level={3}
+          >
             {t('general.time')}
           </Title>
         </div>

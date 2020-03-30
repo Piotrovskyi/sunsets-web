@@ -15,7 +15,7 @@ const ParametersSelectDesktop = ({
   loading,
   isMobile = false,
 }) => {
-  const onSetOption = e => setOption(e.target.value);
+  const onSetOption = (e) => setOption(e.target.value);
 
   const Options = useMemo(
     () =>
@@ -29,7 +29,7 @@ const ParametersSelectDesktop = ({
           </span>
         </Radio.Button>
       )),
-    [currentOption, optionButtons],
+    [currentOption, optionButtons]
   );
 
   return (
@@ -42,7 +42,8 @@ const ParametersSelectDesktop = ({
         prefixCls="app-vertical"
         size="large"
         onChange={onSetOption}
-        value={currentOption}>
+        value={currentOption}
+      >
         {Options}
       </Radio.Group>
     </div>
@@ -64,7 +65,7 @@ const ParametersSelectMobile = ({
           {text}
         </Option>
       )),
-    [currentOption, optionButtons],
+    [currentOption, optionButtons]
   );
 
   return (
@@ -72,13 +73,18 @@ const ParametersSelectMobile = ({
       style={{ width: '100%' }}
       onChange={setOption}
       value={currentOption}
-      suffixIcon={<Icon iconName="selector" />}>
+      suffixIcon={<Icon iconName="selector" />}
+    >
       {Options}
     </Select>
   );
 };
 
-const ParameterSelect = props =>
-  props.isMobile ? <ParametersSelectMobile {...props} /> : <ParametersSelectDesktop {...props} />;
+const ParameterSelect = (props) =>
+  props.isMobile ? (
+    <ParametersSelectMobile {...props} />
+  ) : (
+    <ParametersSelectDesktop {...props} />
+  );
 
 export default ParameterSelect;

@@ -2,7 +2,10 @@ import React, { useMemo } from 'react';
 import './MapNavigation.styles.css';
 import Menu from 'antd/es/menu';
 import t from '../../utils/getTranstalion';
-import { MAP_PHOTO_SPOTS_TAB_KEY, MAP_WEATHER_TAB_KEY } from '../../constants/map.constants';
+import {
+  MAP_PHOTO_SPOTS_TAB_KEY,
+  MAP_WEATHER_TAB_KEY,
+} from '../../constants/map.constants';
 import Icon from '../Icon';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectActiveMapTab } from '../../store/ui/ui.selectors';
@@ -18,7 +21,7 @@ const MapNavigation = () => {
         <Icon className="logo-icon" iconName="logo" />
       </a>
     ),
-    [],
+    []
   );
 
   return (
@@ -27,9 +30,14 @@ const MapNavigation = () => {
         onClick={setActiveTab}
         selectedKeys={activeTab}
         className="w-100 custom-flex-menu"
-        mode="horizontal">
-        <Menu.Item key={MAP_WEATHER_TAB_KEY}>{t('navigation.weather')}</Menu.Item>
-        <Menu.Item key={MAP_PHOTO_SPOTS_TAB_KEY}>{t('navigation.photo_spots')}</Menu.Item>
+        mode="horizontal"
+      >
+        <Menu.Item key={MAP_WEATHER_TAB_KEY}>
+          {t('navigation.weather')}
+        </Menu.Item>
+        <Menu.Item key={MAP_PHOTO_SPOTS_TAB_KEY}>
+          {t('navigation.photo_spots')}
+        </Menu.Item>
       </Menu>
       {logo}
     </aside>

@@ -5,7 +5,6 @@ const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
 
-
 function upper(str) {
   return str.charAt(0).toUpperCase() + str.substring(1);
 }
@@ -30,7 +29,7 @@ function createStandartComponent(compName, folderPath, compType) {
   ].join('\n');
   const stylesContent = [].join('\n');
   const opts = {
-    flag: 'w'
+    flag: 'w',
   };
 
   fs.mkdirSync(path.join(folderPath, capName));
@@ -38,17 +37,17 @@ function createStandartComponent(compName, folderPath, compType) {
   fs.writeFileSync(
     path.join(folderPath, capName, 'index.js'),
     indexContent,
-    opts,
+    opts
   );
   fs.writeFileSync(
     path.join(folderPath, capName, `${capName}.${compType}.js`),
     componentContent,
-    opts,
+    opts
   );
   fs.writeFileSync(
     path.join(folderPath, capName, `${capName}.styles.css`),
     stylesContent,
-    opts,
+    opts
   );
 
   console.log(`${_.capitalize(compType)} ${capName} generated successfully`);
@@ -56,29 +55,25 @@ function createStandartComponent(compName, folderPath, compType) {
   return capName;
 }
 
-
 program
   .command('component [name]')
-  .description('Generate component with given name [Example: yarn generate button]')
-  .action(name => {
+  .description(
+    'Generate component with given name [Example: yarn generate button]'
+  )
+  .action((name) => {
     createStandartComponent(name, './src/components/', 'component');
   });
 
 program
   .command('page [path]')
   .description(
-    'Generate page with given name [Example: yarn generate subfolder/some-page-name]',
+    'Generate page with given name [Example: yarn generate subfolder/some-page-name]'
   )
-  .action(name => {
-    const splitedPath = name.split('/').filter(el => el);
+  .action((name) => {
+    const splitedPath = name.split('/').filter((el) => el);
     const fileName = splitedPath.pop();
     const camelName = _.camelCase(fileName);
-    createStandartComponent(
-      camelName,
-      './src/pages',
-      'page',
-    );
+    createStandartComponent(camelName, './src/pages', 'page');
   });
 
 program.parse(process.argv);
-
