@@ -1,1 +1,25 @@
+.map-loader {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
 
+  animation-name: loader;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes loader {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
