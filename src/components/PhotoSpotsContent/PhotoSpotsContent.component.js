@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import './PhotoSpotsContent.styles.css';
 import ParametersSelect from '../ParametersSelect';
 import {
@@ -14,12 +14,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   selectPhotoSpotsDay,
   selectPhotoSpotsParam,
+  selectPreparedParams,
 } from '../../store/photoSpots/photoSpots.selectors';
 import {
   getSetPhotoSpotsDayAction,
   getSetPhotoSpotsParamAction,
 } from '../../store/photoSpots/photoSpots.actions';
 import { ScreenSizeContext } from '../../context/screenSizeContext';
+import photoSpotsSlice from '../../store/photoSpots/photoSpots.slice';
 
 const spotTabParamOptions = [
   {
@@ -48,8 +50,9 @@ const PhotoSpotsContent = () => {
   const dispatch = useDispatch();
   const day = useSelector(selectPhotoSpotsDay);
   const param = useSelector(selectPhotoSpotsParam);
-  const setDay = (day) => dispatch(getSetPhotoSpotsDayAction(day));
-  const setParam = (param) => dispatch(getSetPhotoSpotsParamAction(param));
+  const params = useSelector(selectPreparedParams);
+  const setDay = (day) => dispatch(photoSpotsSlice.actions.setDay(day));
+  const setParam = (param) => dispatch(photoSpotsSlice.actions.setParam(param));
   const { isMobile } = useContext(ScreenSizeContext);
 
   return (
@@ -70,6 +73,7 @@ const PhotoSpotsContent = () => {
           optionButtons={spotTabParamOptions}
           currentOption={param}
           setOption={setParam}
+          optionButtons={params}
         />
       </div>
     </div>

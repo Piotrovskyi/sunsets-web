@@ -12,27 +12,36 @@ import {
   getSetPhotoSpotsLoadingAction,
 } from './photoSpots.actions';
 import { selectPhotoSpotsFetchParams } from './photoSpots.selectors';
+import { PHOTO_PARAMS_DATA_URL} from '../../constants/map.constants'
+import photoSpotsSlice from './photoSpots.slice';
 
-const getWeatherDataUrl = (day, time, param) =>
-  `${PHOTO_SPOTS_DATA_URL}${day}/${param}.json`;
+const getWeatherDataUrl = (day, param) =>
+  `${PHOTO_SPOTS_DATA_URL}/${day}/${param}.json`;
 
 function* fetchWeatherFeatures(action) {
-  return;
-  // todo add PHOTO_SPOTS_DATA_URL and then remove return
-  yield put(getSetPhotoSpotsLoadingAction(true));
   const { day, param } = yield select(selectPhotoSpotsFetchParams);
+console.log(day, param)
   try {
     const data = yield call(fetch, getWeatherDataUrl(day, param));
     const features = yield call([data, data.json]);
-    yield put(getFetchPhotoSpotsFeaturesAction(features));
+    yield put(photoSpotsSlice.actions.setFeatures(features));
   } catch (e) {
-    yield put(getSetPhotoSpotsErrorsAction(e));
+    yield put(photoSpotsSlice.actions.setErrors(e));
   }
 }
 
-export default function* weatherSaga() {
+function* getPhotoSporsParams() {
+  try {
+    const data = yield call(fetch, PHOTO_PARAMS_DATA_URL);
+    const { params } = yield call([data, data.json]);
+    console.log(params)
+    yield put(photoSpotsSlice.actions.setParamsList(params));
+  } catch (err) {}
+}
+
+export default function* photoSpotsSaga() {
+  yield getPhotoSporsParams();
   yield all([
-    takeEvery(fetchPhotoSpotsFeaturesTypes[REQUEST], fetchWeatherFeatures),
-    takeEvery([SET_DAY, SET_PARAM], fetchWeatherFeatures),
+    takeEvery([photoSpotsSlice.actions.setDay, photoSpotsSlice.actions.setParam], fetchWeatherFeatures),
   ]);
 }

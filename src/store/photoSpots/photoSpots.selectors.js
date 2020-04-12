@@ -24,6 +24,19 @@ export const selectPhotoSpotsParam = createSelector(
   (weather) => weather.param
 );
 
+export const selectPhotoSpotsParams = createSelector(
+  getPhotoSpotsState,
+  (weather) => weather.params
+);
+
+export const selectPreparedParams = createSelector(selectPhotoSpotsParams, (list) =>
+  list.map(({ id, name }) => ({
+    value: id,
+    icon: null,
+    text: name,
+  }))
+);
+
 export const selectPhotoSpotsFetchParams = createSelector(
   getPhotoSpotsState,
   ({ day, param }) => ({ day, param })
