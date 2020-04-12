@@ -20,7 +20,7 @@ const getWeatherDataUrl = (day, param) =>
 
 function* fetchWeatherFeatures(action) {
   const { day, param } = yield select(selectPhotoSpotsFetchParams);
-console.log(day, param)
+
   try {
     const data = yield call(fetch, getWeatherDataUrl(day, param));
     const features = yield call([data, data.json]);

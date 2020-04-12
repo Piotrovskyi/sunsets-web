@@ -18,8 +18,9 @@ export default class OpenLayerMap {
   coordinates = null;
   layer = null;
 
-  constructor(center, zoom) {
+  constructor(center, zoom, handleHover) {
     this.coordinates = { center, zoom };
+    this.handleHover = handleHover;
 
     const source = new VectorSource({
       features: null,
@@ -58,8 +59,24 @@ export default class OpenLayerMap {
       }),
     });
 
+    this.olmap.on('pointermove', (evt) => {
+      if (evt.dragging) {
+        return;
+      }
+      const pixel = this.olmap.getEventPixel(evt.originalEvent);
+      this.displayFeatureInfo(pixel)
+    });
+
     this.olmap.setTarget(MAP_CONTAINER_ID);
   }
+
+  displayFeatureInfo(pixel) {
+    const feature = this.olmap.forEachFeatureAtPixel(pixel, function(feature) {
+      return feature;
+    });
+
+    this.handleHover(feature)
+  };
 
   updateData(features) {
     const source = new VectorSource({
