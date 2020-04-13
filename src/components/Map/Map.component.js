@@ -63,7 +63,7 @@ const Map = () => {
           <Spin />
         </div>
       )}
-      {featureText && currentTab === 'photo_spots' && (
+      {featureText && (
         <div className="feature-text-container">
           {beautifyText(featureText)}
         </div>
