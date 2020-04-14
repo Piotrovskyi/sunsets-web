@@ -1,7 +1,7 @@
 export default {
   navigation: {
     weather: 'מזג אוויר',
-    photo_spots: 'כתמי תמונות',
+    photo_spots: 'צילום',
   },
   days: {
     today: 'מחרתים',
