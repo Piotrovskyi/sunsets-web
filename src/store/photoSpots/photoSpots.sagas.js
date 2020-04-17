@@ -16,7 +16,7 @@ import { PHOTO_PARAMS_DATA_URL} from '../../constants/map.constants'
 import photoSpotsSlice from './photoSpots.slice';
 
 const getWeatherDataUrl = (day, param) =>
-  `${PHOTO_SPOTS_DATA_URL}/${day}/${param}.json`;
+  `${PHOTO_SPOTS_DATA_URL}${day}/${param}.json`;
 
 function* fetchWeatherFeatures(action) {
   const { day, param } = yield select(selectPhotoSpotsFetchParams);
