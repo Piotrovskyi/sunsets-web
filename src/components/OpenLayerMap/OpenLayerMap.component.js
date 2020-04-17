@@ -31,7 +31,7 @@ export default class OpenLayerMap {
     const styleFunction = function (feature) {
       return new Style({
         stroke: new Stroke({
-          color: 'blue',
+          color: '#555555',
           width: 1,
         }),
         fill: new Fill({

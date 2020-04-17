@@ -4,9 +4,9 @@ export default {
     photo_spots: 'צילום',
   },
   days: {
-    today: 'מחרתים',
+    today: 'היום',
     tomorrow: 'מחר',
-    after_tomorrow: 'היום',
+    after_tomorrow: 'מחרתים',
   },
   options: {
     clouds: 'עננים',
