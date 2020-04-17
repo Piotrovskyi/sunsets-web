@@ -1,5 +1,6 @@
-const BASE = 'http://localhost:8000/';
-//'https://israel-sky.s3-eu-west-1.amazonaws.com/';
+const BASE =
+    //'http://localhost:8000/';
+'https://israel-sky.s3-eu-west-1.amazonaws.com/';
 
 export const MAP_CONTAINER_ID = 'map';
 export const WEATHER_DATA_URL = BASE;
