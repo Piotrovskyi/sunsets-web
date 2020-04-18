@@ -1,5 +1,6 @@
-export function pathJoin(parts, sep){
-  var separator = sep || '/';
-  var replace   = new RegExp(separator+'{1,}', 'g');
-  return parts.join(separator).replace(replace, separator);
+var urljoin = require('url-join');
+
+
+export function pathJoin(parts){
+  return urljoin(...parts)
 }
