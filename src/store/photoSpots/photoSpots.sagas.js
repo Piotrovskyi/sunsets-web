@@ -34,7 +34,6 @@ function* getPhotoSporsParams() {
   try {
     const data = yield call(fetch, PHOTO_PARAMS_DATA_URL);
     const { params } = yield call([data, data.json]);
-    console.log(params)
     yield put(photoSpotsSlice.actions.setParamsList(params));
   } catch (err) {}
 }
@@ -44,4 +43,7 @@ export default function* photoSpotsSaga() {
   yield all([
     takeEvery([photoSpotsSlice.actions.setDay, photoSpotsSlice.actions.setParam], fetchWeatherFeatures),
   ]);
+
+  const param = yield select(state => state.photoSpots.params[0].id)
+  yield put(photoSpotsSlice.actions.setParam(param))
 }
