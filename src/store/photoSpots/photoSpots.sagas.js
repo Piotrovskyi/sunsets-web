@@ -12,9 +12,7 @@ function* fetchWeatherFeatures(action) {
   const { day, param } = yield select(selectPhotoSpotsFetchParams);
 
   try {
-    console.log(1)
     const data = yield call(fetch, getWeatherDataUrl(day, param));
-    console.log(2)
 
     const features = yield call([data, data.json]);
     yield put(photoSpotsSlice.actions.setFeatures(features));
