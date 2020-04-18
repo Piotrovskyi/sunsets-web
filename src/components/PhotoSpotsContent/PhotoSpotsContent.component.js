@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import './PhotoSpotsContent.styles.css';
 import ParametersSelect from '../ParametersSelect';
 import {
@@ -16,10 +16,6 @@ import {
   selectPhotoSpotsParam,
   selectPreparedParams,
 } from '../../store/photoSpots/photoSpots.selectors';
-import {
-  getSetPhotoSpotsDayAction,
-  getSetPhotoSpotsParamAction,
-} from '../../store/photoSpots/photoSpots.actions';
 import { ScreenSizeContext } from '../../context/screenSizeContext';
 import photoSpotsSlice from '../../store/photoSpots/photoSpots.slice';
 

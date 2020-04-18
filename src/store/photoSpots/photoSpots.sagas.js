@@ -1,16 +1,5 @@
 import { all, takeEvery, put, call, select } from 'redux-saga/effects';
-import { REQUEST } from '../../constants/saga.constants';
-import {
-  fetchPhotoSpotsFeaturesTypes,
-  SET_DAY,
-  SET_PARAM,
-} from './photoSpots.constants';
 import { PHOTO_SPOTS_DATA_URL } from '../../constants/map.constants';
-import {
-  getFetchPhotoSpotsFeaturesAction,
-  getSetPhotoSpotsErrorsAction,
-  getSetPhotoSpotsLoadingAction,
-} from './photoSpots.actions';
 import { selectPhotoSpotsFetchParams } from './photoSpots.selectors';
 import { PHOTO_PARAMS_DATA_URL} from '../../constants/map.constants'
 import photoSpotsSlice from './photoSpots.slice';

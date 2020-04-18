@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { dayValuesMap } from '../../constants/days.constants';
-import { SET_FEATURES } from '../weather/weather.constants';
 
 const initialState = {
   day: dayValuesMap.TODAY,
