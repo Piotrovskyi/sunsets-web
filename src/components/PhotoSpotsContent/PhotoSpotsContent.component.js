@@ -63,7 +63,7 @@ const PhotoSpotsContent = () => {
         style={{ fontSize: '16px' }}
         level={3}
       >
-        {t('general.time')}
+        {/* {t('general.time')} */}
       </Title>
       <DayPicker day={day} setDay={setDay} />
       <div className="pl-0 pl-md-3">
