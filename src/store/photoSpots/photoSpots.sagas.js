@@ -1,11 +1,12 @@
 import { all, takeEvery, put, call, select } from 'redux-saga/effects';
 import { PHOTO_SPOTS_DATA_URL } from '../../constants/map.constants';
 import { selectPhotoSpotsFetchParams } from './photoSpots.selectors';
-import { PHOTO_PARAMS_DATA_URL} from '../../constants/map.constants'
+import { PHOTO_PARAMS_DATA_URL } from '../../constants/map.constants';
 import photoSpotsSlice from './photoSpots.slice';
+import { pathJoin } from '../../utils/path';
 
 const getWeatherDataUrl = (day, param) =>
-  `${PHOTO_SPOTS_DATA_URL}${day}/${param}.json`;
+  pathJoin([PHOTO_SPOTS_DATA_URL, day, `${param}.json`]);
 
 function* fetchWeatherFeatures(action) {
   const { day, param } = yield select(selectPhotoSpotsFetchParams);
@@ -30,9 +31,12 @@ function* getPhotoSporsParams() {
 export default function* photoSpotsSaga() {
   yield getPhotoSporsParams();
   yield all([
-    takeEvery([photoSpotsSlice.actions.setDay, photoSpotsSlice.actions.setParam], fetchWeatherFeatures),
+    takeEvery(
+      [photoSpotsSlice.actions.setDay, photoSpotsSlice.actions.setParam],
+      fetchWeatherFeatures
+    ),
   ]);
 
-  const param = yield select(state => state.photoSpots.params[0].id)
-  yield put(photoSpotsSlice.actions.setParam(param))
+  const param = yield select((state) => state.photoSpots.params[0].id);
+  yield put(photoSpotsSlice.actions.setParam(param));
 }

@@ -13,9 +13,10 @@ import {
 } from './weather.actions';
 import { WEATHER_DATA_URL } from '../../constants/map.constants';
 import { selectWeatherFetchParams } from './weather.selectors';
+import { pathJoin } from '../../utils/path';
 
 const getWeatherDataUrl = (day, time, param) =>
-  `${WEATHER_DATA_URL}${day}/${time}/${param}.json`;
+  pathJoin([WEATHER_DATA_URL, day, time, `${param}.json`]);
 
 function* fetchWeatherFeatures(action) {
   yield put(getSetWeatherLoadingAction(true));
