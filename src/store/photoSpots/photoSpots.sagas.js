@@ -3,20 +3,23 @@ import { PHOTO_SPOTS_DATA_URL } from '../../constants/map.constants';
 import { selectPhotoSpotsFetchParams } from './photoSpots.selectors';
 import { PHOTO_PARAMS_DATA_URL } from '../../constants/map.constants';
 import photoSpotsSlice from './photoSpots.slice';
-import { pathJoin } from '../../utils/path';
+import { joinUrl } from '../../utils/joinUrl';
 
 const getWeatherDataUrl = (day, param) =>
-  pathJoin([PHOTO_SPOTS_DATA_URL, day, `${param}.json`]);
+  joinUrl(PHOTO_SPOTS_DATA_URL, ''+day, `${param}.json`);
 
 function* fetchWeatherFeatures(action) {
   const { day, param } = yield select(selectPhotoSpotsFetchParams);
 
   try {
+    console.log(1)
     const data = yield call(fetch, getWeatherDataUrl(day, param));
+    console.log(2)
+
     const features = yield call([data, data.json]);
     yield put(photoSpotsSlice.actions.setFeatures(features));
   } catch (e) {
-    yield put(photoSpotsSlice.actions.setErrors(e));
+    yield put(photoSpotsSlice.actions.setErrors(e.message));
   }
 }
 

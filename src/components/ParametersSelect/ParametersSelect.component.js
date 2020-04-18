@@ -29,7 +29,7 @@ const ParametersSelectDesktop = ({
           </span>
         </Radio.Button>
       )),
-    [currentOption, optionButtons]
+    [optionButtons]
   );
 
   return (
@@ -65,7 +65,7 @@ const ParametersSelectMobile = ({
           {text}
         </Option>
       )),
-    [currentOption, optionButtons]
+    [optionButtons]
   );
 
   return (

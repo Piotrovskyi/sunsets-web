@@ -1,14 +1,12 @@
 import React, {
   useEffect,
   useState,
-  useMemo,
-  useCallback,
   useRef,
 } from 'react';
 import 'ol/ol.css';
 import { MAP_CONTAINER_ID } from '../../constants/map.constants';
 import OpenLayerMap from '../OpenLayerMap';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectFeaturesByTab } from '../../store/selectors';
 import Spin from 'antd/es/spin';
 import _ from 'lodash';
@@ -32,7 +30,7 @@ const Map = () => {
   const features = useSelector(selectFeaturesByTab);
   const loading = useSelector((state) => state.weather.loading);
   const loading2 = useSelector((state) => state.photoSpots.loading);
-  const currentTab = useSelector((state) => state.ui.activeMapTab);
+  // const currentTab = useSelector((state) => state.ui.activeMapTab);
   const [featureText, setFeatureTextState] = useState(null);
 
   const setFeatureText = useRef(

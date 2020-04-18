@@ -41,7 +41,7 @@ const WeatherContent = () => {
 
   useEffect(() => {
     dispatch(getFetchWeatherParamsAction());
-  }, []);
+  }, [dispatch]);
 
   const setNow = () => {
     setTime(moment().get('hours'));

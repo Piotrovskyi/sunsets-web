@@ -17,7 +17,7 @@ const MapNavigation = () => {
   const setActiveTab = ({ key }) => dispatch(getSetActiveMapTabAction(key));
   const logo = useMemo(
     () => (
-      <a href="#" className="d-flex p-3 h-100">
+      <a href="/" className="d-flex p-3 h-100">
         <Icon className="logo-icon" iconName="logo" />
       </a>
     ),

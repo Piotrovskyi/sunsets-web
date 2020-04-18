@@ -13,10 +13,10 @@ import {
 } from './weather.actions';
 import { WEATHER_DATA_URL } from '../../constants/map.constants';
 import { selectWeatherFetchParams } from './weather.selectors';
-import { pathJoin } from '../../utils/path';
+import { joinUrl } from '../../utils/joinUrl';
 
 const getWeatherDataUrl = (day, time, param) =>
-  pathJoin([WEATHER_DATA_URL, day, time, `${param}.json`]);
+  joinUrl(WEATHER_DATA_URL, '' + day, '' + time, `${param}.json`);
 
 function* fetchWeatherFeatures(action) {
   yield put(getSetWeatherLoadingAction(true));
@@ -27,7 +27,7 @@ function* fetchWeatherFeatures(action) {
     const features = yield call([data, data.json]);
     yield put(getSetWeatherFeaturesAction(features));
   } catch (e) {
-    yield put(getSetWeatherErrorsAction(e));
+    yield put(getSetWeatherErrorsAction(e.message));
   }
 }
 

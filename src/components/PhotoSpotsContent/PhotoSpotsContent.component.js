@@ -1,12 +1,6 @@
 import React, { useContext } from 'react';
 import './PhotoSpotsContent.styles.css';
 import ParametersSelect from '../ParametersSelect';
-import {
-  CLOUDS_OPT,
-  SUNRISE_OPT,
-  SUNSET_OPT,
-  THUNDER_OPT,
-} from '../../constants/option.constants';
 import DayPicker from '../DayPicker';
 import Title from 'antd/lib/typography/Title';
 import t from '../../utils/getTranstalion';
@@ -19,28 +13,6 @@ import {
 import { ScreenSizeContext } from '../../context/screenSizeContext';
 import photoSpotsSlice from '../../store/photoSpots/photoSpots.slice';
 
-const spotTabParamOptions = [
-  {
-    value: CLOUDS_OPT,
-    icon: 'cloud',
-    text: t('options.clouds'),
-  },
-  {
-    value: SUNRISE_OPT,
-    icon: 'sunrise',
-    text: t('options.sunrise'),
-  },
-  {
-    value: SUNSET_OPT,
-    icon: 'sunset',
-    text: t('options.sunset'),
-  },
-  {
-    value: THUNDER_OPT,
-    icon: 'cloud-lightning',
-    text: t('options.thunder'),
-  },
-];
 
 const PhotoSpotsContent = () => {
   const dispatch = useDispatch();
@@ -66,10 +38,9 @@ const PhotoSpotsContent = () => {
         <ParametersSelect
           isMobile={isMobile}
           title={t('navigation.photo_spots')}
-          optionButtons={spotTabParamOptions}
+          optionButtons={params}
           currentOption={param}
           setOption={setParam}
-          optionButtons={params}
         />
       </div>
     </div>
