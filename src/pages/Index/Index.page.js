@@ -5,6 +5,8 @@ import Map from '../../components/Map';
 import { Layout } from 'antd';
 import { Provider } from 'react-redux';
 import MapSettings from '../../components/MapSettings';
+import Footer from '../../components/Footer';
+
 import MapNavigation from '../../components/MapNavigation';
 import { ScreenSizeProvider } from '../../context/screenSizeContext';
 
@@ -23,6 +25,7 @@ const Index = ({ store }) => (
             <MapSettings />
           </div>
         </div>
+        <Footer />
       </Layout>
     </Provider>
   </ScreenSizeProvider>

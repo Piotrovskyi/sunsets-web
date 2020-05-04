@@ -1,0 +1,22 @@
+.footer {
+  padding: 10px 20px;
+  background-color: #e2efec;
+  color: #00474f;
+}
+
+.footer a:link {
+  color: #00474f;
+}
+.footer a:visited {
+  color: green;
+}
+
+/* mouse over link */
+.footer a:hover {
+  color: hotpink;
+}
+
+/* selected link */
+.footer a:active {
+  color: blue;
+}
