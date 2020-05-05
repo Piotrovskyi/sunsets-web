@@ -7,7 +7,7 @@ import { OSM } from 'ol/source';
 
 import GeoJSON from 'ol/format/GeoJSON';
 import VectorSource from 'ol/source/Vector';
-import { Fill, Stroke, Style } from 'ol/style';
+import { Fill, Style } from 'ol/style';
 import VectorLayer from 'ol/layer/Vector';
 import { MAP_CONTAINER_ID } from '../../constants/map.constants';
 
@@ -30,10 +30,6 @@ export default class OpenLayerMap {
 
     const styleFunction = function (feature) {
       return new Style({
-        stroke: new Stroke({
-          color: '#555555',
-          width: 1,
-        }),
         fill: new Fill({
           color: feature.getProperties().color,
         }),
