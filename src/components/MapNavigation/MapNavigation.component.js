@@ -32,11 +32,11 @@ const MapNavigation = () => {
         className="w-100 custom-flex-menu"
         mode="horizontal"
       >
-        <Menu.Item key={MAP_WEATHER_TAB_KEY}>
-          {t('navigation.weather')}
-        </Menu.Item>
         <Menu.Item key={MAP_PHOTO_SPOTS_TAB_KEY}>
           {t('navigation.photo_spots')}
+        </Menu.Item>
+        <Menu.Item key={MAP_WEATHER_TAB_KEY}>
+          {t('navigation.weather')}
         </Menu.Item>
       </Menu>
       {logo}

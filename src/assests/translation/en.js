@@ -1,7 +1,7 @@
 export default {
   navigation: {
     weather: 'Weather',
-    photo_spots: 'Photo spots',
+    photo_spots: 'Photo',
   },
   days: {
     today: 'Today',
