@@ -9,16 +9,17 @@ import {
   selectPhotoSpotsDay,
   selectPhotoSpotsParam,
   selectPreparedParams,
+  selectPhotoParamById,
 } from '../../store/photoSpots/photoSpots.selectors';
 import { ScreenSizeContext } from '../../context/screenSizeContext';
 import photoSpotsSlice from '../../store/photoSpots/photoSpots.slice';
-
 
 const PhotoSpotsContent = () => {
   const dispatch = useDispatch();
   const day = useSelector(selectPhotoSpotsDay);
   const param = useSelector(selectPhotoSpotsParam);
   const params = useSelector(selectPreparedParams);
+  const paramMeta = useSelector((state) => selectPhotoParamById(state, param));
   const setDay = (day) => dispatch(photoSpotsSlice.actions.setDay(day));
   const setParam = (param) => dispatch(photoSpotsSlice.actions.setParam(param));
   const { isMobile } = useContext(ScreenSizeContext);
@@ -35,6 +36,21 @@ const PhotoSpotsContent = () => {
       </Title>
       <DayPicker day={day} setDay={setDay} />
       <div className="pl-0 pl-md-3">
+        {paramMeta?.description && (
+          <div
+            style={{
+              width: '100%',
+              marginTop: '20px',
+              border: '1px solid #9bcdd9',
+              padding: '0.65em',
+              borderRadius: '0.25em',
+              backgroundColor: "#e2efec",
+            }}
+          >
+            {paramMeta.description}
+          </div>
+        )}
+
         <ParametersSelect
           isMobile={isMobile}
           title={t('navigation.photo_spots')}

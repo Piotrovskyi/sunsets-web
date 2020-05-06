@@ -29,12 +29,20 @@ export const selectPhotoSpotsParams = createSelector(
   (weather) => weather.params
 );
 
-export const selectPreparedParams = createSelector(selectPhotoSpotsParams, (list) =>
-  list.map(({ id, name }) => ({
-    value: id,
-    icon: null,
-    text: name,
-  }))
+export const selectPreparedParams = createSelector(
+  selectPhotoSpotsParams,
+  (list) =>
+    list.map(({ id, name }) => ({
+      value: id,
+      icon: null,
+      text: name,
+    }))
+);
+
+export const selectPhotoParamById = createSelector(
+  selectPhotoSpotsParams,
+  (_, id) => id,
+  (params, id) => params.find((el) => el.id === id)
 );
 
 export const selectPhotoSpotsFetchParams = createSelector(

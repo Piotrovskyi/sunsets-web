@@ -22,3 +22,9 @@ export const selectPreparedParams = createSelector(selectParamsList, (list) =>
     text: name,
   }))
 );
+
+export const selectWeatherParamById = createSelector(
+  selectParamsList,
+  (_, id) => id,
+  (params, id) => params.find((el) => el.id === id)
+);

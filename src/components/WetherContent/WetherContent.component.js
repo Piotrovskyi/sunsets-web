@@ -22,6 +22,7 @@ import { getFetchWeatherParamsAction } from '../../store/weatherParams/weatherPa
 import {
   selectParamsLoading,
   selectPreparedParams,
+  selectWeatherParamById,
 } from '../../store/weatherParams/weatherParams.selectors';
 import { ScreenSizeContext } from '../../context/screenSizeContext';
 
@@ -33,6 +34,9 @@ const WeatherContent = () => {
   const time = useSelector(selectWeatherTime);
   const param = useSelector(selectWeatherParam);
   const params = useSelector(selectPreparedParams);
+  const paramMeta = useSelector((state) =>
+    selectWeatherParamById(state, param)
+  );
   const paramsLoading = useSelector(selectParamsLoading);
   const setDay = (day) => dispatch(getSetWeatherDayAction(day));
   const setTime = (time) => dispatch(getSetWeatherTimeAction(time));
@@ -101,6 +105,21 @@ const WeatherContent = () => {
         </div>
       </div>
       <div className="pl-0 pl-md-3">
+        {paramMeta?.description && (
+          <div
+            style={{
+              width: '100%',
+              marginTop: '20px',
+              border: '1px solid #9bcdd9',
+              padding: '0.65em',
+              borderRadius: '0.25em',
+              backgroundColor: '#e2efec',
+            }}
+          >
+            {paramMeta.description}
+          </div>
+        )}
+
         <ParametersSelect
           isMobile={isMobile}
           loading={paramsLoading}
